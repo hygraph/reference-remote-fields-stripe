@@ -1,6 +1,9 @@
 import * as React from 'react'
+import { loadStripe } from '@stripe/stripe-js'
 
 import CheckIcon from '@/icons/check'
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 function PricingPlanCard({
   activeInterval,
@@ -19,6 +22,28 @@ function PricingPlanCard({
 
     setActivePrice(activePrice)
   }, [activeInterval])
+
+  const onClick = async () => {
+    try {
+      const stripe = await stripePromise
+
+      const session = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          success_url: window.location.href,
+          cancel_url: window.location.href,
+          line_items: [{ price: activePrice.id, quantity: 1 }]
+        })
+      }).then((res) => res.json())
+
+      return stripe.redirectToCheckout({ sessionId: session.id })
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
@@ -43,12 +68,12 @@ function PricingPlanCard({
             {`/${activePrice.recurring.interval}`}
           </span>
         </p>
-        <a
-          href="#"
+        <button
           className="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700"
+          onClick={onClick}
         >
           Subscribe to {activePrice.product.name}
-        </a>
+        </button>
       </div>
       <div className="pt-6 pb-8 px-6">
         <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">

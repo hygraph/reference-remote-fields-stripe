@@ -72,6 +72,7 @@ export async function getStaticProps() {
 
   const { page, plans } = await graphCms.request(gql`
     fragment StripePriceFields on StripePrice {
+      id
       recurring {
         interval
         interval_count
