@@ -1,6 +1,9 @@
 import * as React from 'react'
+import { loadStripe } from '@stripe/stripe-js'
 
 import CheckIcon from '@/icons/check'
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 function PricingPlanCard({
   activeInterval,
@@ -20,18 +23,35 @@ function PricingPlanCard({
     setActivePrice(activePrice)
   }, [activeInterval])
 
+  const onClick = async () => {
+    try {
+      const stripe = await stripePromise
+
+      const session = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          success_url: window.location.href,
+          cancel_url: window.location.href,
+          line_items: [{ price: activePrice.id, quantity: 1 }]
+        })
+      }).then((res) => res.json())
+
+      return stripe.redirectToCheckout({ sessionId: session.id })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
-    <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
-      <div className="p-6">
-        <h2 className="text-lg leading-6 font-medium text-gray-900">
+    <div className="bg-white border-gray-200 text-gray-500 flex flex-col overflow-hidden border-t-8 rounded-lg shadow-sm">
+      <div className="lg:h-84 px-6 py-8 space-y-6">
+        <h3 className="font-bold leading-10 text-gray-900 text-4xl">
           {activePrice.product.name}
-        </h2>
-        {activePrice.product.description ? (
-          <p className="mt-4 text-sm text-gray-500">
-            {activePrice.product.description}
-          </p>
-        ) : null}
-        <p className="mt-8">
+        </h3>
+        <p>
           <span className="text-4xl font-extrabold text-gray-900">
             {new Intl.NumberFormat('en-US', {
               style: 'currency',
@@ -43,28 +63,22 @@ function PricingPlanCard({
             {`/${activePrice.recurring.interval}`}
           </span>
         </p>
-        <a
-          href="#"
-          className="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700"
-        >
-          Subscribe to {activePrice.product.name}
-        </a>
+        <p>{activePrice.product.description}</p>
       </div>
-      <div className="pt-6 pb-8 px-6">
-        <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">
-          What's included
-        </h3>
-        <ul className="mt-6 space-y-4">
+      <div className="bg-gray-50 flex flex-1 flex-col px-6 py-5">
+        <ul className="flex-1 list-outside list-disc mb-10 px-3 space-y-3">
           {included.map((feature, index) => (
-            <li key={index} className="flex space-x-3">
-              <CheckIcon
-                className="flex-shrink-0 h-5 w-5 text-green-500"
-                aria-hidden="true"
-              />
-              <span className="text-sm text-gray-500">{feature}</span>
+            <li key={index} className="text-indigo-600">
+              <span>{feature}</span>
             </li>
           ))}
         </ul>
+        <button
+          className="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700"
+          onClick={onClick}
+        >
+          Subscribe to {activePrice.product.name}
+        </button>
       </div>
     </div>
   )

@@ -8,9 +8,7 @@ function App({ Component, pageProps }) {
   const getLayout =
     Component.getLayout || ((page) => <SiteLayout>{page}</SiteLayout>)
 
-  return (
-    <React.Fragment>{getLayout(<Component {...pageProps} />)}</React.Fragment>
-  )
+  return getLayout(<Component {...pageProps} />)
 }
 
 export default App
