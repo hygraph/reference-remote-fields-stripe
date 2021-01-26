@@ -97,7 +97,7 @@ export async function getStaticProps() {
       }
       plans: pricingPlans {
         id
-        included
+        includedFeatures
         stripeAnnualPrice {
           ...StripePriceFields
         }

@@ -7,7 +7,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 function PricingPlanCard({
   activeInterval,
-  included,
+  includedFeatures,
   stripeAnnualPrice,
   stripeMonthlyPrice
 }) {
@@ -67,7 +67,7 @@ function PricingPlanCard({
       </div>
       <div className="bg-gray-50 flex flex-1 flex-col px-6 py-5">
         <ul className="flex-1 list-outside list-disc mb-10 px-3 space-y-3">
-          {included.map((feature, index) => (
+          {includedFeatures.map((feature, index) => (
             <li key={index} className="text-indigo-600">
               <span>{feature}</span>
             </li>
