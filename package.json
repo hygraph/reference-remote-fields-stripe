@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "migrate": "node migration.js",
     "start": "next start"
   },
   "dependencies": {
+    "@graphcms/management": "0.0.19",
     "@stripe/react-stripe-js": "1.2.0",
     "@stripe/stripe-js": "1.11.0",
     "classcat": "4.1.0",
