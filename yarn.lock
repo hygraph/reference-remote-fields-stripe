@@ -961,6 +961,15 @@
   dependencies:
     purgecss "^3.1.3"
 
+"@graphcms/management@0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@graphcms/management/-/management-0.0.19.tgz#5a5ea50b3cd9c6cebf04cf4a783182254d875691"
+  integrity sha512-4nSYJ8pBSJ5y5PFRKBvXkDoNeRQC6qXkD4ORLVv+qv8pbkyT2ed1Uf2KUCbpHxZrGWbPelS20usqm8mMjvjpjQ==
+  dependencies:
+    graphql "^15.4.0"
+    graphql-request "^3.4.0"
+    uuid "^8.3.0"
+
 "@hapi/accept@5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-5.0.1.tgz#068553e867f0f63225a506ed74e899441af53e10"
@@ -2961,7 +2970,16 @@ graphql-request@3.3.0:
     extract-files "^9.0.0"
     form-data "^3.0.0"
 
-graphql@15.4.0:
+graphql-request@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-3.4.0.tgz#3a400cd5511eb3c064b1873afb059196bbea9c2b"
+  integrity sha512-acrTzidSlwAj8wBNO7Q/UQHS8T+z5qRGquCQRv9J1InwR01BBWV9ObnoE+JS5nCCEj8wSGS0yrDXVDoRiKZuOg==
+  dependencies:
+    cross-fetch "^3.0.6"
+    extract-files "^9.0.0"
+    form-data "^3.0.0"
+
+graphql@15.4.0, graphql@^15.4.0:
   version "15.4.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.4.0.tgz#e459dea1150da5a106486ba7276518b5295a4347"
   integrity sha512-EB3zgGchcabbsU9cFe1j+yxdzKQKAbGUWRb13DsrsMN1yyfmmIq+2+L5MqVWcDCE4V89R5AyUOi7sMOGxdsYtA==
@@ -5791,6 +5809,11 @@ util@^0.11.0:
   integrity sha512-HShAsny+zS2TZfaXxD9tYj4HQGlBezXZMZuM/S5PKLLoZkShZiGk9o5CzukI1LVHZvjdvZ2Sj1aW/Ndn2NB/HQ==
   dependencies:
     inherits "2.0.3"
+
+uuid@^8.3.0:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 vfile-location@^3.0.0, vfile-location@^3.2.0:
   version "3.2.0"
