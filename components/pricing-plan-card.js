@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { createCheckoutSession } from 'next-stripe/client'
 import { loadStripe } from '@stripe/stripe-js'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
@@ -25,17 +26,13 @@ function PricingPlanCard({
     try {
       const stripe = await stripePromise
 
-      const session = await fetch('/api/stripe/create-checkout-session', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          success_url: window.location.href,
-          cancel_url: window.location.href,
-          line_items: [{ price: activePrice.id, quantity: 1 }]
-        })
-      }).then((res) => res.json())
+      const session = await createCheckoutSession({
+        success_url: window.location.href,
+        cancel_url: window.location.href,
+        line_items: [{ price: activePrice.id, quantity: 1 }],
+        payment_method_types: ['card'],
+        mode: 'subscription'
+      })
 
       return stripe.redirectToCheckout({ sessionId: session.id })
     } catch (err) {
