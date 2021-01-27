@@ -3936,10 +3936,10 @@ next-mdx-remote@1.0.0:
     "@mdx-js/mdx" "^1.6.16"
     "@mdx-js/react" "^1.6.16"
 
-next-stripe@1.0.0-beta.1:
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/next-stripe/-/next-stripe-1.0.0-beta.1.tgz#b3ed44619542552b0900ccd9c5f1bed7a6963449"
-  integrity sha512-VQrFkgzVObtU+8lf+P0s/TFwSeqgQCO+FcBjnVG86QrGgetCEbfP7bIx+Lzu/lWeDDFsBqQ3Vb+rzDOi5X3vHg==
+next-stripe@1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/next-stripe/-/next-stripe-1.0.0-beta.4.tgz#41a0d045276c30397b1c9cf28a6bbdcc00bb22f0"
+  integrity sha512-x4vMDEZVE4W1ZfpB0rPaNisB4N61gd2FD7h3+BqO6pfeypq58d4mHmpl4pSDGy7qHtoNEfHlGuf/WqV1ltDLXg==
   dependencies:
     "@babel/runtime" "7.12.5"
     stripe "8.132.0"
