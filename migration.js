@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const { newMigration, FieldType, Renderer } = require('@graphcms/management')
+const { newMigration, FieldType } = require('@graphcms/management')
 
 // Create a new `migration` instance
 const migration = newMigration({
@@ -30,49 +30,20 @@ migration.createRemoteTypeDefinition({
   description: 'Fields belonging to the recurring element of the Stripe Price'
 })
 
-// Create a new `Page` model, with associated fields
-const pageModel = migration.createModel({
-  apiId: 'Page',
-  apiIdPlural: 'Pages',
-  displayName: 'Page'
-})
-
-pageModel.addSimpleField({
-  apiId: 'title',
-  displayName: 'Title',
-  description: 'The title of the page',
-  type: FieldType.String,
-  isRequired: true
-})
-
-pageModel.addSimpleField({
-  apiId: 'slug',
-  displayName: 'Slug',
-  description: 'A slugified version of the title value, subtitle for URLs',
-  type: FieldType.String,
-  isRequired: true,
-  isTitle: true,
-  isUnique: true,
-  validations: {
-    matches: {
-      regex: '^[a-z0-9]+(?:-[a-z0-9]+)*$'
-    }
-  }
-})
-
-pageModel.addSimpleField({
-  apiId: 'subtitle',
-  displayName: 'Subtitle',
-  description: 'The subtitle of the page',
-  type: FieldType.String,
-  formRenderer: Renderer.Markdown
-})
-
 // Create a new `PricingPlan` model, with associated fields
 const pricingPlanModel = migration.createModel({
   apiId: 'PricingPlan',
   apiIdPlural: 'PricingPlans',
   displayName: 'Pricing Plan'
+})
+
+pricingPlanModel.addSimpleField({
+  apiId: 'name',
+  displayName: 'Name',
+  description: 'Unique identifier for your plan',
+  type: FieldType.String,
+  isRequired: true,
+  isUnique: true
 })
 
 pricingPlanModel.addSimpleField({
