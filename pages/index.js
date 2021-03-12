@@ -1,29 +1,24 @@
 import * as React from 'react'
 import { gql, GraphQLClient } from 'graphql-request'
-import renderToString from 'next-mdx-remote/render-to-string'
-import hydrate from 'next-mdx-remote/hydrate'
 import he from 'he'
 import cc from 'classcat'
 
 import PricingPlanCard from '@/components/pricing-plan-card'
 
-function PricingPage({ page, plans }) {
+function PricingPage({ plans }) {
   const [activeInterval, setActiveInterval] = React.useState('year')
-
-  const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null
 
   return (
     <div className="bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto pt-24 px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:flex-col sm:align-center">
           <h1 className="text-5xl font-extrabold text-gray-900 sm:text-center">
-            {page.title}
+            Pricing Plans
           </h1>
-          {mdxSubtitle ? (
-            <div className="mt-5 text-xl text-gray-500 sm:text-center">
-              {mdxSubtitle}
-            </div>
-          ) : null}
+          <p className="mt-5 text-xl text-gray-500 sm:text-center">
+            How do you price your business? Manage all your pricing tiers and
+            features to make your product shine.
+          </p>
           <div className="relative mt-6 bg-gray-100 rounded-lg p-0.5 flex self-center sm:mt-8">
             <button
               type="button"
@@ -70,7 +65,7 @@ export async function getStaticProps() {
     }
   })
 
-  const { page, plans } = await graphCms.request(gql`
+  const { plans } = await graphCms.request(gql`
     fragment StripePriceFields on StripePrice {
       id
       recurring {
@@ -89,12 +84,6 @@ export async function getStaticProps() {
     }
 
     {
-      page(where: { slug: "pricing-plans" }) {
-        id
-        slug
-        subtitle
-        title
-      }
       plans: pricingPlans {
         id
         includedFeatures
@@ -110,13 +99,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      page: {
-        ...page,
-        subtitle: {
-          markdown: page.subtitle,
-          mdx: await renderToString(he.decode(page.subtitle))
-        }
-      },
       plans
     }
   }
