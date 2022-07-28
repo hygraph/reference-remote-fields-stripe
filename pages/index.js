@@ -57,15 +57,15 @@ function PricingPage({ plans }) {
 }
 
 export async function getStaticProps() {
-  const graphCms = new GraphQLClient(process.env.GRAPHCMS_URL, {
+  const hygraphClient = new GraphQLClient(process.env.HYGRAPH_URL, {
     headers: {
-      ...(process.env.GRAPHCMS_TOKEN && {
-        Authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`
+      ...(process.env.HYGRAPH_TOKEN && {
+        Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`
       })
     }
   })
 
-  const { plans } = await graphCms.request(gql`
+  const { plans } = await hygraphClient.request(gql`
     fragment StripePriceFields on StripePrice {
       id
       recurring {

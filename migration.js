@@ -1,11 +1,11 @@
 require('dotenv').config()
 
-const { newMigration, FieldType } = require('@graphcms/management')
+const { newMigration, FieldType } = require('@hygraph/management-sdk')
 
 // Create a new `migration` instance
 const migration = newMigration({
-  authToken: process.env.GRAPHCMS_MIGRATION_TOKEN,
-  endpoint: process.env.GRAPHCMS_URL
+  authToken: process.env.HYGRAPH_MIGRATION_TOKEN,
+  endpoint: process.env.HYGRAPH_URL
 })
 
 // Create the type definitions for objects returned from the Stripe API
