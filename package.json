@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@graphcms/management": "0.0.19",
-    "@stripe/react-stripe-js": "1.2.0",
+    "@stripe/react-stripe-js": "1.16.5",
     "@stripe/stripe-js": "1.11.0",
     "classcat": "4.1.0",
     "graphql": "15.4.0",
