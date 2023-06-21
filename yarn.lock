@@ -157,10 +157,10 @@
   resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-10.0.3.tgz#276bec60eae18768f96baf8a52f668f657f50ab4"
   integrity sha512-XtzzPX2R4+MIyu1waEQUo2tiNwWVEkmObA6pboRCDTPOs4Ri8ckaIE08lN5A5opyF6GVN+IEq/J8KQrgsePsZQ==
 
-"@stripe/react-stripe-js@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.2.0.tgz#01be9eafcaeedd63f1ee3260c793a0c8422fb98d"
-  integrity sha512-5zl9Tr/yvciSDPxYiWO8lDKlLJ8z0AceA5sqW3Hfe5i6g7nTJAWs1ciFZYFBeRFhdHG7xRFbZFgfKiFHN5yGrA==
+"@stripe/react-stripe-js@1.16.5":
+  version "1.16.5"
+  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.16.5.tgz#51cf862b50ca91ae6193c77a5bec889e81047f10"
+  integrity sha512-lVPW3IfwdacyS22pP+nBB6/GNFRRhT/4jfgAK6T2guQmtzPwJV1DogiGGaBNhiKtSY18+yS8KlHSu+PvZNclvQ==
   dependencies:
     prop-types "^15.7.2"
 
