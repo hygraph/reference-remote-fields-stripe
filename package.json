@@ -11,7 +11,7 @@
   "dependencies": {
     "@graphcms/management": "0.0.19",
     "@stripe/react-stripe-js": "1.2.0",
-    "@stripe/stripe-js": "1.11.0",
+    "@stripe/stripe-js": "1.54.1",
     "classcat": "4.1.0",
     "graphql": "15.4.0",
     "graphql-request": "3.3.0",
